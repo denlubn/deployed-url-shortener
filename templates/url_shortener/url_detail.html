@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load rest_framework %}
+
+{% block content %}
+  <h1>
+    Url Detail
+
+
+    <form action="{% url 'url_shortener:url-delete' pk=url.pk %}" method="POST" class="link-to-page">
+      {% csrf_token %}
+        <input type="submit" value="Delete" class="btn btn-danger">
+    </form>
+  </h1>
+
+  <p><strong>Created:</strong> {{ url.created_at }}</p>
+  <p><strong>Visits:</strong> {{ url.num_visits }}</p>
+  <p><strong>User:</strong> {{ url.user.email }}</p>
+
+  <form action="{% url 'url_shortener:url-detail' pk=url.pk %}" method="POST"><strong>
+    {% csrf_token %}
+    {% render_form serializer %}
+    <input type="submit" value="Update" class="btn btn-primary">
+  </form>
+{% endblock %}

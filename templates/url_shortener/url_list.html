@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load rest_framework %}
+
+{% block content %}
+  <h1>
+    Urls List
+  </h1>
+
+  <form action="{% url 'url_shortener:url-list' %}" method="POST" class="form-inline">
+    {% csrf_token %}
+    {% render_form serializer %}
+    <input type="submit" value="Shorten" class="btn btn-secondary">
+  </form>
+
+  <br>
+
+  {% if url_list %}
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Original link</th>
+        <th>Short link</th>
+        <th>Created</th>
+        <th>Visits</th>
+        <th>Update</th>
+      </tr>
+
+      {% for url in url_list %}
+        <tr>
+          <td>
+              {{ url.id }}
+          </td>
+          <td>
+              {{ url.original_link }}
+          </td>
+          <td>
+              {{ url.short_url }}
+          </td>
+          <td>
+              {{ url.created_at }}
+          </td>
+          <td>
+              {{ url.num_visits }}
+          </td>
+          <td>
+            <a href="{% url 'url_shortener:url-detail' pk=url.id %}">
+              Update
+            </a>
+          </td>
+
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>There are not your short links.</p>
+  {% endif %}
+{% endblock %}

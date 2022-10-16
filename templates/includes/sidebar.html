@@ -1,0 +1,14 @@
+<div class="list-group">
+  {% if user.is_authenticated %}
+    <a href="{% url 'user:manage' %}" class="list-group-item list-group-item-action active">User: {{ user.email }}</a>
+  {% else %}
+    <a href="{% url 'user:token_obtain_pair' %}" class="list-group-item list-group-item-action active">Login</a>
+    <a href="{% url 'user:create' %}" class="list-group-item list-group-item-action">Sign up</a>
+  {% endif %}
+</div>
+
+<br>
+
+<div class="list-group">
+  <a href="{% url 'url_shortener:url-list' %}" class="list-group-item list-group-item-action">All urls</a>
+</div>

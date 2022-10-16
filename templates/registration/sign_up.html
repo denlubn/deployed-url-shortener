@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load rest_framework %}
+
+{% block content %}
+
+<h1>Sign up</h1>
+
+<form method="post" action="{% url 'user:create' %}">
+  {% csrf_token %}
+  {% render_form serializer %}
+
+  <input type="submit" value="Sign up" class="btn btn-primary" />
+</form>
+
+{% endblock %}

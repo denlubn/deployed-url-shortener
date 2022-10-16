@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load rest_framework %}
+
+{% block content %}
+  <h1>
+    Personal data
+  </h1>
+
+  <p><strong>ID:</strong> {{ user.id }}</p>
+  <p><strong>Is staff:</strong> {{ user.is_staff }}</p>
+
+  <form action="{% url 'user:manage' %}" method="POST"><strong>
+    {% csrf_token %}
+    {% render_form serializer %}
+    <input type="submit" value="Update" class="btn btn-primary">
+  </form>
+{% endblock %}
