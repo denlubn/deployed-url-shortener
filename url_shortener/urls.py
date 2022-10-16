@@ -1,6 +1,6 @@
 from django.urls import path
 
-from url_shortener.views import RedirectView, UrlViewSet
+from url_shortener.views import RedirectView, UrlViewSet, IndexView
 
 url_list = UrlViewSet.as_view({
     'get': 'list',
@@ -17,6 +17,7 @@ url_delete = UrlViewSet.as_view({
 })
 
 urlpatterns = [
+    path("", IndexView.as_view(), name="index"),
     path("urls/", url_list, name="url-list"),
     path("urls/<int:pk>/", url_detail, name="url-detail"),
     path("urls/<int:pk>/delete/", url_delete, name="url-delete"),

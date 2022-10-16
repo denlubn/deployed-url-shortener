@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Url Shortener Home</h1>
+  <h2>How use service:</h2>
+  <ul>
+        <li><strong>At first you must log in or sign up</strong></li>
+        <li><strong>Unauthorized users can only follow the created links</strong></li>
+        <li><strong>All other functionality you can see on
+          <a href="{% url 'swagger-ui' %}">swagger documentation</a>
+        </strong></li>
+    </ul>
+{% endblock %}

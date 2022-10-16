@@ -12,6 +12,14 @@ from url_shortener.models import URL
 from url_shortener.serializers import URLSerializer, URLDetailSerializer
 
 
+class IndexView(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = "url_shortener/index.html"
+
+    def get(self, request):
+        return Response()
+
+
 class UrlViewSet(viewsets.ModelViewSet):
     queryset = URL.objects.all()
     renderer_classes = [TemplateHTMLRenderer]
